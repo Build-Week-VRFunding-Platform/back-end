@@ -1,8 +1,9 @@
 const router = require("express").Router();
 
 const Projects = require("./projects-model");
+const restricted = require("../auth/restricted-middleware.js");
 
-router.get("/", (req, res) => {
+router.get("/", restricted, (req, res) => {
   Projects.getAll()
     .then((projects) => {
       res.status(200).json(projects);
@@ -20,7 +21,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", restricted, (req, res) => {
   Projects.getById(req.params.id)
     .then((project) => {
       res.status(200).json(project);
@@ -28,7 +29,7 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
   Projects.getById(id)
@@ -49,7 +50,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", restricted, (req, res) => {
   const { id } = req.params;
   Projects.remove(id)
     .then((deleted) => {
