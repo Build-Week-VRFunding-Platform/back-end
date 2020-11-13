@@ -120,5 +120,5 @@ dist
 .yarn/build-state.yml
 .pnp.*
 
-
+# hiding secrets
 auth/secrets.js
