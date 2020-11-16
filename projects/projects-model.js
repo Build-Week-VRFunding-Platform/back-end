@@ -3,6 +3,7 @@ const db = require("../database/db-config");
 module.exports = {
   add,
   getAll,
+  getAllById,
   getById,
   update,
   remove,
@@ -24,6 +25,18 @@ function getAll() {
       "user_id"
     )
     .orderBy("user_id");
+}
+
+function getAllById(user_id) {
+  return db("projects")
+    .select(
+      "id",
+      "project_name",
+      "project_description",
+      "project_funding",
+      "user_id"
+    )
+    .where({ user_id });
 }
 
 function getById(id) {
