@@ -12,7 +12,11 @@ router.get("/", restricted, (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  Projects.add(req.body)
+  const newProject = {
+    ...req.body,
+    user_id: req.decodedJwt.id,
+  };
+  Projects.add(newProject)
     .then((project) => {
       // res.status(200).json(project);
       Projects.getById(project).then((result) => {
