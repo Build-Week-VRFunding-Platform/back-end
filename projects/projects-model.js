@@ -10,9 +10,8 @@ module.exports = {
 };
 
 function add(project) {
-  return db("projects")
-    .insert(project, "id")
-    .then(() => getAll());
+  return db("projects").insert(project, "id");
+  // .then(() => getAll());
 }
 
 function getAll() {

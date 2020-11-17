@@ -14,7 +14,12 @@ router.get("/", restricted, (req, res) => {
 router.post("/", (req, res) => {
   Projects.add(req.body)
     .then((project) => {
-      res.status(200).json(project);
+      // res.status(200).json(project);
+      Projects.getById(project).then((result) => {
+        res.status(200).json({
+          result,
+        });
+      });
     })
     .catch((err) => {
       res.status(500).json({ message: err });
