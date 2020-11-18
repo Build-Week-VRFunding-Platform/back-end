@@ -64,7 +64,6 @@ router.delete("/:id", restricted, (req, res) => {
   Projects.remove(id)
     .then((deleted) => {
       if (deleted) {
-        res.json({ message: `Successfully deleted project with id: ${id}` });
         Projects.getAll()
           .then((res) => {
             res.status(200).json(res);
