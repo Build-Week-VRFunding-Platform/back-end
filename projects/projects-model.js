@@ -50,5 +50,8 @@ function update(changes, id) {
 }
 
 function remove(id) {
-  return db("projects").where({ id }).del();
+  return db("projects")
+    .where({ id })
+    .del()
+    .then(() => getAll());
 }
