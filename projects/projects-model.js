@@ -21,6 +21,7 @@ function getAll() {
       "project_name",
       "project_description",
       "project_funding",
+      "funded",
       "user_id"
     )
     .orderBy("user_id");
@@ -33,6 +34,7 @@ function getAllById(user_id) {
       "project_name",
       "project_description",
       "project_funding",
+      "funded",
       "user_id"
     )
     .where({ user_id });
